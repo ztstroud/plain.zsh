@@ -8,7 +8,7 @@ function {
     local dir="%F{10}%2~%f"
     local arrow="%(?.%F{8}.%F{1})>%f"
 
-    PROMPT="$dir"'$(plain_git)'$'\n'"$arrow "
+    PROMPT='$(plain_string)'"$dir"'$(plain_git)'$'\n'"$arrow "
 
     local jobs="%(1j. %F{8}[%F{3}%j%F{8}]%f.)"
     local time="%F{6}%T%f"
@@ -31,6 +31,12 @@ precmd() {
 
 preexec() {
     PLAIN_COMMAND_START=$(date +%s)
+}
+
+plain_string() {
+  [[ -z "$PLAIN_STRING" ]] && return
+
+  printf "%%F{13}$PLAIN_STRING%%F{8}:%%f"
 }
 
 plain_git() {

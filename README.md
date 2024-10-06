@@ -2,6 +2,14 @@
 A simple zsh theme by ztstroud
 
 ## Segments
+### String
+
+The string segment allows you to print a string at the start of the prompt. You can use this like a more generic
+hostname.
+
+#### Options
+`PLAIN_STRING`: The string to display. If unset, no string is printed.
+
 ### Git
 Plain offers information about the current git repository, including the name of the repository, the name of the current
 branch, and a brief summary of the status of the repo:
