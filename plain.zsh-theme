@@ -121,9 +121,11 @@ plain_git_status() {
 plain_execution_time() {
     [[ -z "$PLAIN_COMMAND_TIME" ]] && return
 
-    # Assumes that commands don't run longer than 24 hours
-    # Would be good to get an unbounded replacement for %H
-    local time="$(date -d@$PLAIN_COMMAND_TIME -u +%H:%M:%S | sed -e "s/^[0:]\+//")"
+    local seconds=$(($PLAIN_COMMAND_TIME % 60))
+    local minutes=$(($PLAIN_COMMAND_TIME / 60 % 60))
+    local hours=$(($PLAIN_COMMAND_TIME / 60 / 60))
+
+    local time="$(echo "$hours:${(l:2::0:)minutes}:${(l:2::0:)seconds}" | sed -e "s/^0:0\?//")"
 
     printf "%%F{11}$time%%f %%F{8}>%%f "
 }
