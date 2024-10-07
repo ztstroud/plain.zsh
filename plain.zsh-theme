@@ -6,7 +6,7 @@ unset PLAIN_COMMAND_TIME
 
 function {
     local dir="%F{10}%2~%f"
-    local arrow="%(?.%F{8}.%F{1})>%f"
+    local arrow="%(?.%F{8}.%(148?.%F{8}.%F{1}))>%f"
 
     PROMPT='$(plain_string)'"$dir"'$(plain_git)'$'\n'"$arrow "
 
